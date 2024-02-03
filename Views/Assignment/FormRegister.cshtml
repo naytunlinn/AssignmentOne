@@ -1,0 +1,66 @@
+﻿@*
+For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<h1 class="text-center fs-2 text-primary fw-bolder">Register</h1>
+
+<div class="container" style="width: 500px;">
+
+    <form action="https://localhost:7211/assignment/FormRegister" method="post">
+
+        <div class="form-group my-2">
+            <label for="">Name</label>
+            <input class="form-control" type="text" name="name" id="name" required>
+        </div>
+        <div class="form-group my-2">
+            <label for="">Email</label>
+            <input class="form-control" type="email" name="email" id="email" required>
+        </div>
+        <div class="form-group my-2">
+            <label for="">Password</label>
+            <input class="form-control" type="password" name="password" id="password" required>
+        </div>
+        <div class="form-group my-2">
+            <label for="">Confirm Password</label>
+            <input class="form-control"  type="password" name="coPassword" id="coPassword" required>
+        </div>
+        <div class="form-check form-check-inline my-2">
+            <input class="form-check-input" type="radio" name="gender" id="male" checked>
+            <label class="form-check-label" for="">Male</label>
+        </div>
+        <div class="form-check form-check-inline my-2">
+            <input class="form-check-input" type="radio" name="gender" id="female">
+            <label class="form-check-label" for="">Female</label>
+        </div>
+        <div class="form-group my-2">
+            <label for="">Date Of Birth</label>
+            <input class="form-control" type="date" name="dob" id="" required>
+        </div>
+        <div class="form-group my-2">
+            <label for="">Address</label>
+            <textarea class="form-control" name="address" id="" cols="30" rows="5" required></textarea>
+        </div>
+        <span class="text-danger" id="result">@ViewBag.Result</span>
+        @* <input class="btn btn-success" type="submit" value="Register"> *@
+        <button type="submit" class="btn btn-success w-100" >Register</button>
+        
+    </form>
+    @* <script>
+        function register() {
+
+            let name = document.getElementById("#name").value;
+            let email = document.getElementById("#email").value;
+
+            let password = document.getElementById("#password").value;
+            let coPassword = document.getElementById("#coPassword").value;
+            if (password == coPassword) {
+                document.getElementById("#result").innerHTML = "Successfully Created - " + name + " " + email;
+            }
+            else {
+                document.getElementById("#result").innerHTML = "Type Same Password".
+            }
+        }
+
+    </script> *@
+</div>

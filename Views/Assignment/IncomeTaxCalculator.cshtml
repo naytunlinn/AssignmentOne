@@ -1,0 +1,101 @@
+﻿@* For more information on enabling MVC for empty projects, visit
+https://go.microsoft.com/fwlink/?LinkID=397860 *@ @{ }
+
+
+<html>
+
+<head>
+  <script>
+    function toggleDiv() {
+
+      var childInfo = document.getElementById('childInfo');
+      var rdoMarried = document.getElementById('rdoMarried');
+
+
+      if (rdoMarried.checked) {
+
+        childInfo.style.display = 'flex';
+
+      } else {
+        childInfo.style.display = 'none';
+      }
+    }
+  </script>
+</head>
+
+<body>
+
+  <h1 class="text-center fs-2 text-primary fw-bolder">Income Tax Calculator</h1>
+
+  <div class="container border border-primary p-3" style="width: 500px;">
+    @* @if (ViewBag.Result != 0 || ViewBag.Result != null)
+    { *@
+
+    @if (ViewBag.Salary >= 500000)
+    {
+      <div class="bg-primary p-3 mb-3" id="info">
+
+        <span class="fs-18" style="font-weight: 700;">
+          <i class="fa fa-info-circle fa-lg"></i> သင်ပေးဆောင်ရမည့် အခွန်ငွေမှာ တစ်လလျှင် @ViewBag.Tax ကျပ်ဖြစ်ပြီး
+          <br>တစ်နှစ်လျှင် @ViewBag.Result ကျပ်ဖြစ်ပါသည်။
+        </span>
+
+      </div>
+    }
+
+
+
+    <form action="https://localhost:7211/assignment/IncomeTaxCalculator" method="post">
+      @* add col-form-label to align Label with text box *@
+      <div class="row my-4">
+        <label class="col-4 col-form-label text-end" for="">တစ်လဝင်ငွေ (ကျပ်)</label>
+        <div class="col-8">
+          <input class="form-control" type="number" name="Salary" id="txtSalary" />
+        </div>
+      </div>
+      <div class="row my-4">
+        <div class="col-4"></div>
+        <div class="col-8">
+          <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="IsFather" value="true" id="IsFather" />
+            <label class="form-check-label" for="">အတူနေ အဖ</label>
+          </div>
+          <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="IsMother" value="true" id="IsMother" />
+            <label class="form-check-label" for="">အတူနေ အမိ</label>
+          </div>
+        </div>
+      </div>
+      <div class="row my-4">
+        @* add pt-0 and col-form-label to align label with radio *@
+
+        <label class="col-4 pt-0 col-form-label text-end" for="">အိမ်ထောင်</label>
+
+        <div class="col-8">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="status" id="rdoMarried" onchange="toggleDiv()" />
+            <label class="form-check-label" for="">ရှိ</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="status" id="rdoSingle" onchange="toggleDiv()" checked />
+            <label class="form-check-label" for="">မရှိ</label>
+          </div>
+        </div>
+      </div>
+      <div class="row my-4 " style="display: none;" id="childInfo">
+
+        <label class="col-4 col-form-label text-end d-inline-block" for="">သားသမီး </label>
+        <div class="col-8">
+          <input class="form-control w-100" type="number" name="NoOfChildren" id="txtChildren" />
+        </div>
+      </div>
+      @* Centering Button , use justify-content-center in parent Div *@
+      <div class="row justify-content-center">
+        <button type="submit" class="btn btn-success col-2 me-2">Convert</button>
+        <button type="reset" class="btn btn-info col-2 ">Clear</button>
+      </div>
+    </form>
+  </div>
+</body>
+
+</html>

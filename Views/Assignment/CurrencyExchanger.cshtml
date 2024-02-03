@@ -1,0 +1,102 @@
+﻿
+<head>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+</head>
+
+<body>
+    <h1 class="text-center fs-2 text-primary fw-bolder">Currency Convertor</h1>
+
+   @*  @if (ViewBag.Errors != null)
+    {
+        <ul>
+            @foreach (var s in ViewBag.Errors)
+            {
+                <li style="color:red;text-align:left">@s</li>
+            }
+        </ul>
+    } *@
+    <div class="container" style="width: 500px;">
+
+        <div class="my-2 border border-danger">
+            <h3 class="fs-4 text-center fw-bolder">Today Exchange Rate</h3>
+            <ul style="list-style-type:square">
+                <li>
+                    1 USD = 3000 MMK
+                </li>
+                <li>
+                    1 TBH = 100 MMK
+                </li>
+                <li>
+                    1 SGD = 1500 MMK
+                </li>
+            </ul>
+        </div>
+       
+        <div class="form-group my-2">
+            <label for="cboFromCurrency">Source Currency</label>
+            <select class="form-control" id="cboFromCurrency" name="FromCurrency">
+                <option value="x" disabled selected>-- Select One --</option>
+                <option value="USD">US Dollar $ </option>
+                <option value="SGD">Singapore Dollar $ </option>
+                <option value="TBH">Thai Baht ฿</option>
+                <option value="MMK">Myanmar Kyat</option>
+            </select>
+
+        </div>
+        <div class="form-group my-2">
+            <label for="cboToCurrency">Designation Currency</label>
+            <select class="form-control" id="cboToCurrency" name="ToCurrency" required>
+                <option value="x" disabled selected>-- Select One --</option>
+                <option value="USD">US Dollar $ </option>
+                <option value="SGD">Singapore Dollar $ </option>
+                <option value="TBH">Thai Baht ฿</option>
+                <option value="MMK">Myanmar Kyat</option>
+            </select>
+
+        </div>
+        <div class="form-group my-2">
+            <label for="txtAmount">Amount</label>
+            <input class="form-control" type="number" name="Amount" id="txtAmount">
+        </div>
+        <div class="form-group my-2">
+            <label for="txtResult">Result</label>
+            <input class="form-control" type="number" name="Result" id="txtResult" readonly>
+        </div>
+       
+        @* <input class="btn btn-success" type="submit" value="Register"> *@
+        <button type="submit" class="btn btn-success me-3" id="btnSubmit">Convert</button>
+        <button type="reset" class="btn btn-info" onclick="reset()">Clear</button>
+        
+        <script>
+
+            function reset() {
+                location.reload();
+                return false;
+            }
+
+            $("#btnSubmit").click(function () {
+                var url = "/assignment/CurrencyExchanger";
+                var myData = {};
+                myData.FromCurrency = $("#cboFromCurrency").val();
+                myData.ToCurrency = $("#cboToCurrency").val();
+                myData.Amount = $("#txtAmount").val();
+                $.ajax({
+                    url: url,
+                    type: "POST",
+                    data: myData,
+
+                    success: function (res) {
+                        var result = JSON.stringify(res);
+
+                        $("#txtResult").val(result);
+                    },
+                    failure: function (err) {
+                        console.log(err);
+                    },
+                });
+            });
+        </script>
+
+    </div>
+</body>
+
