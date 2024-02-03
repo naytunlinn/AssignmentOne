@@ -83,6 +83,7 @@ namespace AssignmentOne.Controllers
 
         public IActionResult IncomeTaxCalculator()
         {
+            ViewBag.Result = 0;
             return View();
         }
         [HttpPost]
@@ -95,7 +96,7 @@ namespace AssignmentOne.Controllers
             decimal tax = 0;
             decimal deduction = 0;
             if(Salary >= 500000) {
-                tax = Salary / 10;
+                tax = Salary;
             }
             if (IsFather)
             {
@@ -110,9 +111,9 @@ namespace AssignmentOne.Controllers
                 deduction += NoOfChildren * 30000;
             }
 
-            decimal result = (tax * 12) - deduction;
+            decimal result = (tax - deduction) * 12;
             ViewBag.Result=result;
-            ViewBag.Tax = tax;
+            ViewBag.Tax = tax-deduction;
 
             return View();
         }

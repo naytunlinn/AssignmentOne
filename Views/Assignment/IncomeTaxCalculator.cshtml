@@ -42,6 +42,16 @@ https://go.microsoft.com/fwlink/?LinkID=397860 *@ @{ }
 
       </div>
     }
+    else if (ViewBag.Result > 0 && ViewBag.Result <= 500000)
+    {
+      <div class="bg-primary p-3 mb-3" id="info">
+
+        <span class="fs-18" style="font-weight: 700;">
+          <i class="fa fa-info-circle fa-lg"></i> သင် အခွန်ပေးဆောင်ရန်မလိုသေးပါ
+        </span>
+
+      </div>
+    }
 
 
 
@@ -57,11 +67,11 @@ https://go.microsoft.com/fwlink/?LinkID=397860 *@ @{ }
         <div class="col-4"></div>
         <div class="col-8">
           <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="IsFather" value="true" id="IsFather" />
+            <input class="form-check-input" type="checkbox" name="IsFather" value="true" id="IsFather" />
             <label class="form-check-label" for="">အတူနေ အဖ</label>
           </div>
           <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="IsMother" value="true" id="IsMother" />
+            <input class="form-check-input" type="checkbox" name="IsMother" value="true" id="IsMother" />
             <label class="form-check-label" for="">အတူနေ အမိ</label>
           </div>
         </div>
